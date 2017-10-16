@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
@@ -35,7 +37,7 @@ Shader "Custom/mat_34_shader" {
 				v.vertex.y += sin(v.vertex.x+v.vertex.z+_Time.y)*0.2;
 				v.vertex.y += sin(v.vertex.x - v.vertex.z + _Time.w)*0.3;
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.col = fixed4(v.vertex.y, v.vertex.y, v.vertex.y, 1);
 				return o;
 			}

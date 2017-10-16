@@ -1,4 +1,6 @@
-﻿Shader "Custom/shader_edge" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/shader_edge" {
 	properties{
 		_maincolor("mainColor",color) = (1,1,1,1)
 		_scale("Scale",range(1,8)) = 1
@@ -26,7 +28,7 @@
 			v2f vert(appdata_base v) {
 				v.vertex.xyz += v.normal*_outer;
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.vertex = v.vertex;
 				o.normal = v.normal;
 				return o;
@@ -65,7 +67,7 @@
 			v2f vert(appdata_base v) {
 
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				return o;
 			}
@@ -97,7 +99,7 @@
 			};
 			v2f vert(appdata_base v) {
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.vertex = v.vertex;
 				o.normal = v.normal;
 				return o;

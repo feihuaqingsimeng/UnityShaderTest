@@ -1,4 +1,6 @@
-﻿Shader "Custom/shader_texture01" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/shader_texture01" {
 	properties{
 		_MainTex("MainTex",2D) = ""{}
 		tiling_x("tiling_x",range(1,5)) = 1
@@ -30,7 +32,7 @@
 			v2f vert(appdata_base v) {
 				
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				//o.uv = v.texcoord.xy *_MainTex_ST.xy+ _MainTex_ST.zw;
 				o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 				return o;
